@@ -22,11 +22,11 @@ void n_interactive(input *in, char **env)
 			f_path = _getenv(argv[0], env);
 		else
 			f_path = argv[0];
-		exec_val = execve(f_path, argv, NULL);
+		exec_val = execve(f_path, argv, env);
 		if (exec_val == -1)
 		{
 			perror(in->sh_name);
-			exit(127);
+			_exit(127);
 		}
 	}
 	else
@@ -69,11 +69,11 @@ void interactive(input *in, char **env)
 				f_path = _getenv(argv[0], env);
 			else
 				f_path = argv[0];
-			exec_val = execve(f_path, argv, NULL);
+			exec_val = execve(f_path, argv, env);
 			if (exec_val == -1)
 			{
 				perror(in->sh_name);
-				exit(127);
+				_exit(127);
 			}
 		}
 		else
