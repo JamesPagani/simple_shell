@@ -30,18 +30,18 @@ char *_strcpy(char *dest, char *src)
  * Return: Amount of tokens found
  */
 
-size_t tok_count(input in, const char *delims)
+size_t tok_count(input *in, const char *delims)
 {
 	char *buf_back, *tok;
 	size_t counter = 0;
 
-	buf_back = malloc(in.size);
+	buf_back = malloc(in->size);
 	if (buf_back == NULL)
 	{
-		perror(in.sh_name);
+		perror(in->sh_name);
 		return (0);
 	}
-	_strcpy(buf_back, in.buffer);
+	_strcpy(buf_back, in->buffer);
 
 	tok = strtok(buf_back, delims);
 	while (tok != NULL)
@@ -61,23 +61,21 @@ size_t tok_count(input in, const char *delims)
  * @in: typedef struct
  * Return: An array of tokens ready to be used with execve
  */
-char **parser(input in)
+char **parser(input *in)
 {
 	const char *delims = " \n\t\r";
 	char **argv, *tok;
-	int status, counter = 0;
-	pid_t child;
 	size_t tok_amount = 0, tok_counter = 0;
 
 	tok_amount = tok_count(in, delims);
 	argv = malloc((tok_amount + 1) * sizeof(char *));
 	if (argv == NULL)
 	{
-		perror(in.sh_name);
+		perror(in->sh_name);
 		return (NULL);
 	}
 
-	tok = strtok(in.buffer, delims);
+	tok = strtok(in->buffer, delims);
 	while (tok_counter < tok_amount)
 	{
 		argv[tok_counter] = tok;
