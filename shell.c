@@ -26,7 +26,7 @@ void n_interactive(input *in, char **env)
 		if (exec_val == -1)
 		{
 			perror(in->sh_name);
-			_exit(127);
+			exit(127);
 		}
 	}
 	else
@@ -73,7 +73,7 @@ void interactive(input *in, char **env)
 			if (exec_val == -1)
 			{
 				perror(in->sh_name);
-				_exit(127);
+				exit(127);
 			}
 		}
 		else
