@@ -1,5 +1,30 @@
 #include "headers.h"
 /**
+ * _strcat - Entry
+ * Desc: _strcat function
+ * @dest: char type pointer where src will concatenate
+ * @src: char pointer type to add to dest
+ * Return: concatenate two strings
+ **/
+char *_strcat(char *dest, char *src)
+{
+	int i = 0, e = 0;
+
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	while (src[e] != '\0')
+	{
+		dest[i] = src[e];
+		e++;
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+/**
  * _strlen - Entry
  * Desc: _strlen function
  * @s: length of input
@@ -72,9 +97,9 @@ char *_getenv(char *argv, char **env)
 		while (tok != '\0')
 		{
 			tmp = malloc(_strlen(tok) + _strlen(argv));
-			strcat(tmp, tok);
-			strcat(tmp, "/");
-			strcat(tmp, argv);
+			_strcat(tmp, tok);
+			_strcat(tmp, "/");
+			_strcat(tmp, argv);
 			if (stat(tmp, &st) == 0)
 				return (tmp);
 			free(tmp);

@@ -37,4 +37,5 @@ size_t tok_count(input *in, const char *delims);
 char *_getenv(char *argv, char **env);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _strlen(const char *s);
+char *_strcat(char *dest, char *src);
 #endif
